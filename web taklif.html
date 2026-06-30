@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Qism Ta'lif wan Nasyr - Ma'had Nurul Haromain Lir Rijal</title>
+    <style>
+        :root {
+            --primary-color: #0B5227; /* Hijau Islami Enha */
+            --secondary-color: #D4AF37; /* Emas */
+            --light-color: #F4F6F4;
+            --dark-color: #1A241E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        header {
+            background-color: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .logo-text h1 {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .logo-text span {
+            color: var(--secondary-color);
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section (Beranda) dengan background foto pondok transparan */
+        #beranda {
+            position: relative;
+            background: url('foto pondok.jpg') no-repeat center center/cover;
+            height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+        }
+
+        /* Lapisan Transparansi / Overlay */
+        #beranda::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(11, 82, 39, 0.85), rgba(26, 36, 30, 0.9));
+            z-index: 1;
+        }
+
+        #beranda h2, #beranda h3, #beranda p, #beranda .btn {
+            position: relative;
+            z-index: 2;
+        }
+
+        #beranda h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        #beranda h3 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        #beranda p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 0.7rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: white;
+        }
+
+        /* Section General Style */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0 auto;
+        }
+
+        /* Tentang Kami & Visi Misi */
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .vision-mission {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .vision-mission h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .vision-mission ul {
+            padding-left: 1.2rem;
+        }
+
+        /* Program / Portofolio */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-info {
+            padding: 1.5rem;
+        }
+
+        .program-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: #E2F0D9;
+            color: #385723;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        /* Galeri */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e1e1e1;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 380px; /* Diatur agak tinggi agar dokumen/foto vertikal terlihat jelas */
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--dark-color);
+            border-top: 2px solid var(--light-color);
+        }
+
+        /* Kontak */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.8rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .brand-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            #beranda h2 {
+                font-size: 1.6rem;
+            }
+            #beranda h3 {
+                font-size: 1.1rem;
+            }
+            .gallery-img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR & MENU -->
+    <header>
+        <nav class="navbar">
+            <div class="brand-container">
+                <img src="logo_enha-removebg-preview.png" alt="Logo Ma'had Nurul Haromain" class="logo-img">
+                <div class="logo-text">
+                    <h1>Qism Ta'lif wan Nasyr</h1>
+                    <span>Ma'had Nurul Haromain Lir Rijal</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#tentang">Tentang Kami</a></li>
+                <li><a href="#program">Program</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- BERANDA (HERO SECTION) -->
+    <section id="beranda">
+        <h2>"Mengembangkan Akal Dengan Berdzikir dan Berfikir"</h2>
+        <h3>Media Dakwah & Informasi Selosoan</h3>
+        <p>Portal Khidmah Literasi Qism Ta'lif wan Nasyr di bawah naungan MKM Dakwah Ma'had Nurul Haromain Lir Rijal.</p>
+        <a href="#program" class="btn">Eksplorasi Program</a>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section id="tentang">
+        <h3 class="section-title">Mengenal Kami</h3>
+        <div class="about-container">
+            <div class="about-content">
+                <p><strong>Qism Ta'lif wan Nasyr Ma'had Nurul Haromain Lir Rijal</strong> merupakan Tim pembentuk sekaligus pengontrol semua nasyroh atau tulisan yang dikeluarkan oleh ma'had.</p>
+                <p style="margin-top: 1rem;">Kami bergerak secara struktural dan berkhidmah langsung di bawah kendali <strong>MKM Dakwah Ma'had Nurul Haromain Lir Rijal</strong> untuk memastikan keberlangsungan dakwah literasi yang bersih, terarah, dan ilmiah.</p>
+            </div>
+            <div class="vision-mission">
+                <h4>Visi:</h4>
+                <p>Sebagai wadah pengembangan ikhwan Ma'had dalam hal penulisan.</p>
+                <h4>Misi:</h4>
+                <ul>
+                    <li>Mengadakan program-program bermutu yang berkaitan erat dengan dunia penulisan.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM & PORTOFOLIO -->
+    <section id="program">
+        <h3 class="section-title">Program Utama</h3>
+        <div class="program-grid">
+            
+            <!-- Kartu Program 1 -->
+            <div class="program-card">
+                <div class="program-info">
+                    <span class="status-badge">Berjalan Rutin</span>
+                    <h4>As-Shuhuf Selosoan</h4>
+                    <p>Merancang, menulis, dan membagikan buletin dakwah berkala secara langsung kepada seluruh jamaah majelis mulia <strong>"Ngaos Sareng Selosoan"</strong> bersama Abina K.H.M Ihya Ulumiddin.</p>
+                </div>
+            </div>
+
+            <!-- Kartu Program 2 -->
+            <div class="program-card">
+                <div class="program-info">
+                    <span class="status-badge">Berjalan Rutin</span>
+                    <h4>Majalah Dinding (Mading) Halaqoh</h4>
+                    <p>Mengelola dan memperbarui papan mading informasi secara aktif dengan mengoordinasi serta membagikan tugas menulis berkala ke setiap halaqoh yang diisi oleh Ikhwan Ma'had.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALERI FOTO (SESUAI DOKUMEN ASLI) -->
+    <section id="galeri">
+        <h3 class="section-title">Galeri Kegiatan</h3>
+        <div class="gallery-grid">
+            
+            <!-- Foto 1 - Shuhuf Selosoan -->
+            <div class="gallery-item">
+                <img src="shuhuf selosoan.jpg" alt="Penerbitan As-Shuhuf" class="gallery-img">
+                <div class="gallery-caption">Buletin Dakwah As-Shuhuf Selosoan</div>
+            </div>
+
+            <!-- Foto 2 - Mading -->
+            <div class="gallery-item">
+                <img src="Mading.jpg" alt="Mading Halaqoh" class="gallery-img">
+                <div class="gallery-caption">Majalah Dinding Kreativitas Ikhwan Ma'had</div>
+            </div>
+
+            <!-- Foto 3 - Khotaman Kitab -->
+            <div class="gallery-item">
+                <img src="Khotaman Kitab.jpg" alt="Khotaman Kitab" class="gallery-img">
+                <div class="gallery-caption">Khotaman Kitab Muhadlorot Syahr Romadlon Al Mubarok</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak">
+        <h3 class="section-title">Kontak & Sekretariat</h3>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h4>Informasi Kantor Pusat</h4>
+                <p>📍 <strong>Alamat:</strong> Jln. Abd. Manan Wijaya No. 141 Pujon, Malang, Jawa Timur</p>
+                <p>📧 <strong>Email:</strong> katibulmahad@gmail.com</p>
+                <p>📱 <strong>WhatsApp:</strong> 0812 1886 9969 (Sekretariat Ma'had Nurul Haromain)</p>
+            </div>
+            <div class="contact-info">
+                <h4>Layanan Informasi</h4>
+                <p>Jika ada keperluan administrasi, pengajuan kerja sama literasi, atau info seputar ma'had, silakan hubungi nomor Sekretariat Ma'had melalui tombol tautan berikut:</p>
+                <a href="https://wa.me/6281218869969" target="_blank" class="whatsapp-btn">💬 Chat Sekretariat Ma'had</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Qism Ta'lif wan Nasyr Ma'had Nurul Haromain Lir Rijal. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
