@@ -92,7 +92,7 @@
             color: var(--secondary-color);
         }
 
-        /* Hero Section (Beranda) dengan background foto pondok transparan */
+        /* Hero Section (Beranda) */
         #beranda {
             position: relative;
             background: url('foto pondok.jpg') no-repeat center center/cover;
@@ -106,7 +106,6 @@
             padding: 0 1rem;
         }
 
-        /* Lapisan Transparansi / Overlay */
         #beranda::before {
             content: '';
             position: absolute;
@@ -222,41 +221,35 @@
             gap: 2rem;
         }
 
-        .program-card-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
         .program-card {
             background: white;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-top: 4px solid var(--secondary-color);
             height: 100%;
-        }
-
-        .program-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(11, 82, 39, 0.15);
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .program-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             padding: 1.5rem;
+        }
+
+        .program-card.clickable:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
         .program-info h4 {
             color: var(--primary-color);
             margin-bottom: 0.5rem;
             font-size: 1.3rem;
-            transition: color 0.3s;
         }
 
-        .program-card:hover .program-info h4 {
-            color: var(--secondary-color);
+        .program-info p {
+            color: #444;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
         }
 
         .status-badge {
@@ -269,23 +262,130 @@
             border-radius: 4px;
             margin-bottom: 1rem;
         }
-        
+
         .click-hint {
-            display: block;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            color: #888;
-            font-style: italic;
-            text-align: right;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: auto;
         }
 
-        /* Sub-judul Galeri */
-        .gallery-subtitle {
+        /* Modal Pop-Up */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 650px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .modal-header h3 {
+            font-size: 1.2rem;
+        }
+
+        .close-btn {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: var(--secondary-color);
+        }
+
+        .modal-body {
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .edisi-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .edisi-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #F8F9FA;
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .edisi-tag {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        .edisi-info h4 {
             color: var(--primary-color);
-            margin: 2.5rem 0 1rem 0;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-            font-size: 1.4rem;
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .edisi-date {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .btn-read {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: background 0.3s;
+        }
+
+        .btn-read:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Galeri */
@@ -293,7 +393,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 2rem;
         }
 
         .gallery-item {
@@ -302,16 +401,11 @@
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border: 1px solid #e1e1e1;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.02);
         }
 
         .gallery-img {
             width: 100%;
-            height: 380px; /* Diatur agak tinggi agar dokumen/foto vertikal terlihat jelas */
+            height: 380px;
             object-fit: cover;
             display: block;
         }
@@ -366,28 +460,9 @@
             background-color: var(--dark-color);
             color: white;
             text-align: center;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem;
             font-size: 0.9rem;
             border-top: 3px solid var(--secondary-color);
-        }
-
-        .feedback-container {
-            margin-bottom: 1.5rem;
-        }
-
-        .feedback-link {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.3rem 0.8rem;
-            border: 1px dashed var(--secondary-color);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .feedback-link:hover {
-            background-color: var(--secondary-color);
-            color: var(--dark-color);
         }
 
         /* Responsive Mobile */
@@ -409,6 +484,15 @@
             }
             .gallery-img {
                 height: 300px;
+            }
+            .edisi-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .btn-read {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -467,76 +551,109 @@
         <h3 class="section-title">Program Utama</h3>
         <div class="program-grid">
             
-            <!-- Kartu Program 1 (Bisa Diklik menuju Galeri As-Shuhuf) -->
-            <a href="#galeri-shuhuf" class="program-card-link">
-                <div class="program-card">
-                    <div class="program-info">
-                        <span class="status-badge">Berjalan Rutin</span>
-                        <h4>As-Shuhuf Selosoan</h4>
-                        <p>Merancang, menulis, dan membagikan buletin dakwah berkala secara langsung kepada seluruh jamaah majelis mulia <strong>"Ngaos Sareng Selosoan"</strong> bersama Abina K.H.M Ihya Ulumiddin.</p>
-                        <span class="click-hint">Lihat Portofolio Gambar ➔</span>
-                    </div>
+            <!-- Kartu Program 1: As-Shuhuf Selosoan (Membuka Modal Pop-Up) -->
+            <div class="program-card clickable" onclick="openModal()" style="cursor: pointer;">
+                <div class="program-info">
+                    <span class="status-badge">Berjalan Rutin</span>
+                    <h4>As-Shuhuf Selosoan</h4>
+                    <p>Merancang, menulis, dan membagikan buletin dakwah berkala secara langsung kepada seluruh jamaah majelis mulia <strong>"Ngaos Sareng Selosoan"</strong> bersama Abina K.H.M Ihya Ulumiddin.</p>
                 </div>
-            </a>
+                <span class="click-hint">Klik untuk Membaca Edisi 1 - 4 ➔</span>
+            </div>
 
-            <!-- Kartu Program 2 (Bisa Diklik menuju Galeri Mading) -->
-            <a href="#galeri-mading" class="program-card-link">
-                <div class="program-card">
-                    <div class="program-info">
-                        <span class="status-badge">Berjalan Rutin</span>
-                        <h4>Majalah Dinding (Mading) Halaqoh</h4>
-                        <p>Mengelola dan memperbarui papan mading informasi secara aktif dengan mengoordinasi serta membagikan tugas menulis berkala ke setiap halaqoh yang diisi oleh Ikhwan Ma'had.</p>
-                        <span class="click-hint">Lihat Portofolio Gambar ➔</span>
-                    </div>
+            <!-- Kartu Program 2: Majalah Dinding -->
+            <div class="program-card">
+                <div class="program-info">
+                    <span class="status-badge">Berjalan Rutin</span>
+                    <h4>Majalah Dinding (Mading) Halaqoh</h4>
+                    <p>Mengelola dan memperbarui papan mading informasi secara aktif dengan mengoordinasi serta membagikan tugas menulis berkala ke setiap halaqoh yang diisi oleh Ikhwan Ma'had.</p>
                 </div>
-            </a>
+            </div>
 
         </div>
     </section>
 
-    <!-- GALERI FOTO (DENGAN KATEGORI BERKALA) -->
-    <section id="galeri">
-        <h3 class="section-title">Galeri Kegiatan & Portofolio</h3>
 
-        <!-- KATEGORI 1: AS-SHUHUF SELOSOAN -->
-        <h4 class="gallery-subtitle" id="galeri-shuhuf">📖 Portofolio As-Shuhuf Selosoan</h4>
+    <!-- MODAL POP-UP DAFTAR EDISI AS-SHUHUF -->
+    <div id="modal-shuhuf" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📖 Daftar Edisi As-Shuhuf Selosoan</h3>
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="edisi-list">
+                    
+                    <!-- EDISI 1 -->
+                    <div class="edisi-card">
+                        <div class="edisi-info">
+                            <span class="edisi-tag">Edisi 1</span>
+                            <h4>Istiqomah Jalan Menuju Keselamatan</h4>
+                            <p class="edisi-date">🗓️ 8 Muharram 1448 H / 23 Juni 2026 M</p>
+                        </div>
+                        <a href="pdf/As-Shuhuf_Edisi_1.pdf" target="_blank" class="btn-read">📄 Baca PDF</a>
+                    </div>
+
+                    <!-- EDISI 2 -->
+                    <div class="edisi-card">
+                        <div class="edisi-info">
+                            <span class="edisi-tag">Edisi 2</span>
+                            <h4>Hijrah Dengan Menjaga Tiga Wasiat Rasulullah SAW di Era Fitnah Agama</h4>
+                            <p class="edisi-date">🗓️ 15 Muharram 1448 H / 30 Juni 2026 M</p>
+                        </div>
+                        <a href="pdf/As-Shuhuf_Edisi_2.pdf" target="_blank" class="btn-read">📄 Baca PDF</a>
+                    </div>
+
+                    <!-- EDISI 3 -->
+                    <div class="edisi-card">
+                        <div class="edisi-info">
+                            <span class="edisi-tag">Edisi 3</span>
+                            <h4>Dampak Buruk Akibat Kezholiman</h4>
+                            <p class="edisi-date">🗓️ 22 Muharram 1448 H / 07 Juli 2026 M</p>
+                        </div>
+                        <a href="pdf/As-Shuhuf_Edisi_3.pdf" target="_blank" class="btn-read">📄 Baca PDF</a>
+                    </div>
+
+                    <!-- EDISI 4 -->
+                    <div class="edisi-card">
+                        <div class="edisi-info">
+                            <span class="edisi-tag">Edisi 4</span>
+                            <h4>Keutamaan Orang Yang Berilmu</h4>
+                            <p class="edisi-date">🗓️ 29 Muharram 1448 H / 14 Juli 2026 M</p>
+                        </div>
+                        <a href="pdf/As-Shuhuf_Edisi_4.pdf" target="_blank" class="btn-read">📄 Baca PDF</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- GALERI FOTO -->
+    <section id="galeri">
+        <h3 class="section-title">Galeri Kegiatan</h3>
         <div class="gallery-grid">
-            <!-- Gambar Utama / Lama -->
+            
+            <!-- Foto 1 - Shuhuf Selosoan -->
             <div class="gallery-item">
                 <img src="shuhuf selosoan.jpg" alt="Penerbitan As-Shuhuf" class="gallery-img">
-                <div class="gallery-caption">Buletin Dakwah As-Shuhuf Selosoan (Arsip)</div>
+                <div class="gallery-caption">Buletin Dakwah As-Shuhuf Selosoan</div>
             </div>
-            <!-- Tempat untuk update gambar berkala As-Shuhuf berikutnya -->
-            <div class="gallery-item">
-                <img src="shuhuf_update1.jpg" alt="As-Shuhuf Edisi Terbaru" class="gallery-img">
-                <div class="gallery-caption">As-Shuhuf Selosoan - Edisi Terbaru</div>
-            </div>
-        </div>
 
-        <!-- KATEGORI 2: MAJALAH DINDING (MADING) -->
-        <h4 class="gallery-subtitle" id="galeri-mading">📌 Portofolio Mading Halaqoh</h4>
-        <div class="gallery-grid">
-            <!-- Gambar Utama / Lama -->
+            <!-- Foto 2 - Mading -->
             <div class="gallery-item">
                 <img src="Mading.jpg" alt="Mading Halaqoh" class="gallery-img">
-                <div class="gallery-caption">Majalah Dinding Kreativitas Ikhwan Ma'had (Arsip)</div>
+                <div class="gallery-caption">Majalah Dinding Kreativitas Ikhwan Ma'had</div>
             </div>
-            <!-- Tempat untuk update gambar berkala Mading berikutnya -->
-            <div class="gallery-item">
-                <img src="mading_update1.jpg" alt="Mading Rilisan Terbaru" class="gallery-img">
-                <div class="gallery-caption">Mading Halaqoh - Rilisan Terbaru</div>
-            </div>
-        </div>
 
-        <!-- KATEGORI 3: DOKUMENTASI KEGIATAN LAIN -->
-        <h4 class="gallery-subtitle">✨ Kegiatan Lainnya</h4>
-        <div class="gallery-grid">
+            <!-- Foto 3 - Khotaman Kitab -->
             <div class="gallery-item">
                 <img src="Khotaman Kitab.jpg" alt="Khotaman Kitab" class="gallery-img">
                 <div class="gallery-caption">Khotaman Kitab Muhadlorot Syahr Romadlon Al Mubarok</div>
             </div>
-        </div>
 
+        </div>
     </section>
 
     <!-- KONTAK -->
@@ -559,12 +676,27 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="feedback-container">
-            <p style="margin-bottom: 0.5rem; opacity: 0.9;">Punya masukan atau saran untuk pengembangan khidmah kami?</p>
-            <a href="https://forms.gle/4ywdDgDLJrCiidKw9" target="_blank" class="feedback-link">📝 Kirim Masukan & Saran Disini</a>
-        </div>
         <p>&copy; 2026 Qism Ta'lif wan Nasyr Ma'had Nurul Haromain Lir Rijal. All Rights Reserved.</p>
     </footer>
+
+    <!-- JAVASCRIPT UNTUK POP-UP -->
+    <script>
+        function openModal() {
+            document.getElementById('modal-shuhuf').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-shuhuf').style.display = 'none';
+        }
+
+        // Menutup modal jika area di luar kotak modal diklik
+        window.onclick = function(event) {
+            var modal = document.getElementById('modal-shuhuf');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
 
 </body>
 </html>
